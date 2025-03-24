@@ -1,0 +1,69 @@
+<app-vendordashbordnavbar/>
+
+<div
+  class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto ml-[250px] mt-10"
+>
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
+        Booked Ticket Details
+      </h2>
+      <p class="mt-1 text-gray-600 dark:text-neutral-400">
+        Here is the list of tickets booked for your event.
+      </p>
+    </div>
+
+    <!-- Conditional Rendering -->
+    <div
+      *ngIf="ticketSoldHistory.length > 0; else noticketSoldHistory"
+      class="mt-12 flex flex-col border rounded-xl p-4 sm:p-6 lg:p-8 dark:border-neutral-700"
+    >
+      <!-- Table for displaying booked ticket details -->
+      <table
+        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+      >
+        <thead
+          class="text-xs text-blue-700 uppercase bg-blue-50 dark:bg-blue-700 dark:text-blue-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Booking ID</th>
+            <th scope="col" class="px-6 py-3">Buyer Name</th>
+            <th scope="col" class="px-6 py-3">Buyer Email</th>
+            <th scope="col" class="px-6 py-3">Quantity</th>
+            <th scope="col" class="px-6 py-3">Purchase Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let ticket of ticketSoldHistory"
+            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+          >
+            <td
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            >
+              {{ ticket.purchaseId }}
+            </td>
+            <td class="px-6 py-4">{{ ticket.customerEntity.fullName }}</td>
+            <td class="px-6 py-4">{{ ticket.customerEntity.email }}</td>
+            <td class="px-6 py-4">{{ ticket.quantity }}</td>
+            <td class="px-6 py-4">
+              {{ ticket.purchaseDate | date : "MMM d, y, h:mm a" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Display if no tickets are found -->
+    <ng-template #noticketSoldHistory>
+      <div class="text-center mt-12">
+        <img
+          src="https://img.freepik.com/premium-vector/no-data-concept-illustration_86047-486.jpg?semt=ais_hybrid"
+          alt="No bookings"
+          class="w-85 h-80 mx-auto"
+        />
+        <p class="mt-4 text-gray-500 text-lg">There is nothing at the moment</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

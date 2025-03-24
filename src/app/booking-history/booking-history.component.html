@@ -1,0 +1,44 @@
+<app-navbar-homepage></app-navbar-homepage>
+
+<!-- Create a flex container to vertically center the title -->
+<div class="flex items-center justify-center min-h-screen mt-[-600px] ">
+  <!-- Centering the title -->
+  <h2 class="text-4xl font-extrabold dark:text-white text-center mb-[-600px]">Booking History</h2>
+</div>
+
+<div *ngIf="bookingHistory.length > 0; else noHistory">
+  <div class="relative overflow-x-auto px-10 mb-[280px]"> <!-- Added px-4 here for left and right padding -->
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-blue-700 uppercase bg-blue-50 dark:bg-blue-700 dark:text-blue-400">
+        <tr>
+          <th scope="col" class="px-6 py-3">Event Name</th>
+          <th scope="col" class="px-6 py-3">Booking Date AND TIME</th>
+          <th scope="col" class="px-6 py-3">Ticket Price</th>
+          <th scope="col" class="px-6 py-3">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookingHistory" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {{ booking.event.eventName }}
+          </td>
+          <td class="px-6 py-4">{{ booking.purchaseDate | date : "MMM d, y, h:mm a" }}</td>
+          <td class="px-6 py-4">{{ booking.event.ticketPrice }}</td>
+          <td class="px-6 py-4">{{ booking.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #noHistory>
+    <div class="text-center mt-12 mb-20">
+        <img
+          src="https://img.freepik.com/premium-vector/no-data-concept-illustration_86047-486.jpg?semt=ais_hybrid"
+          alt="No bookings"
+          class="w-85 h-80 mx-auto"
+        />
+        <p class="mt-4 text-gray-500 text-lg">There is nothing at the moment</p>
+      </div>
+</ng-template>
+<app-footer />

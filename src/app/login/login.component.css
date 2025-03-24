@@ -1,0 +1,15 @@
+.min-h-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.max-w-md {
+  height: 500px; /* Adjust the height of the form */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+

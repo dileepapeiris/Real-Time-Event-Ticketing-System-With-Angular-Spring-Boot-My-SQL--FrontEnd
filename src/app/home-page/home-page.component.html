@@ -1,0 +1,173 @@
+<!--nav bar-->
+<app-navbar-homepage />
+
+<!-- Hero -->
+<div
+  class="relative overflow-hidden before:absolute before:top-0 before:start-1/2 before:bg-[url('https://preline.co/assets/svg/examples/polygon-bg-element.svg')] dark:before:bg-[url('https://preline.co/assets/svg/examples-dark/polygon-bg-element.svg')] before:bg-no-repeat before:bg-top before:bg-cover before:size-full before:-z-[1] before:transform before:-translate-x-1/2"
+>
+  <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10">
+    
+
+    <!-- Title -->
+    <div class="mt-1 max-w-2xl text-center mx-auto">
+      <h1
+        class="block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-neutral-200"
+      >
+        Let's Book Events
+        <span
+          class="bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent"
+          >Instantly.</span
+        >
+      </h1>
+    </div>
+    <!-- End Title -->
+
+    <div class="mt-5 max-w-3xl text-center mx-auto">
+      <p class="text-lg text-gray-600 dark:text-neutral-400">
+        Discover your favorite entertainment right here
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form class="flex justify-center ">
+      <div class="w-auto mt-10 flex gap-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-gray-900/20">
+        <div class="w-full">
+          <label for="hs-search-article-1" class="block text-sm text-gray-700 font-medium dark:text-white"><span class="sr-only">Search Event</span></label>
+          <input type="email" name="hs-search-article-1" id="hs-search-article-1" class="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Search event">
+        </div>
+        <div>
+          <a class="size-[46px] inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" href="#">
+            <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          </a>
+        </div>
+      </div>
+    </form>
+   
+      
+   
+  </div>
+</div>
+<!-- End Hero -->
+
+<!--events-->
+
+<h5 class="mb-2 text-3xl text-gray-900 dark:text-white px-20 py-1">
+  What’s happening<span class="text-blue-700"> next </span>
+</h5>
+<div class="vendor-events py-3">
+<app-homepage-view-all-events></app-homepage-view-all-events>
+</div>
+
+<!-- Testimonials -->
+<div class="relative overflow-hidden">
+  <div class="max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8 lg:py-16 mx-auto">
+    <!-- Gradients -->
+    <div aria-hidden="true" class="flex -z-[1] absolute start-0">
+      <div
+        class="bg-purple-200 opacity-20 blur-3xl w-[1036px] h-[300px] dark:bg-purple-900 dark:opacity-20"
+      ></div>
+    </div>
+    <!-- End Gradients -->
+
+    <!-- Grid -->
+    <div class="lg:grid lg:grid-cols-6 lg:gap-8 lg:items-center">
+      <div class="hidden lg:block lg:col-span-2">
+        <img
+          class="rounded-xl"
+          src="https://images.unsplash.com/photo-1671726203390-cdc4354ee2eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=560&q=80"
+          alt="Avatar"
+        />
+      </div>
+      <!-- End Col -->
+
+      <div class="lg:col-span-4">
+        <!-- Blockquote -->
+        <blockquote>
+          
+
+          <p
+            class="text-xl font-medium text-gray-800 lg:text-2xl lg:leading-normal dark:text-neutral-200"
+          >
+          "Secure your spot at the hottest events with ease—our app lets you book tickets in just a few taps! Never miss out on the action again, with real-time updates and seamless booking for all your favorite events."
+          </p>
+
+          <footer class="mt-6">
+            <div class="flex items-center">
+              <div class="lg:hidden shrink-0">
+                <img
+                  class="size-12 rounded-full"
+                  src="https://images.unsplash.com/photo-1671726203390-cdc4354ee2eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+                  alt="Avatar"
+                />
+              </div>
+              <div class="ms-4 lg:ms-0">
+                
+              </div>
+            </div>
+          </footer>
+        </blockquote>
+        <!-- End Blockquote -->
+      </div>
+      <!-- End Col -->
+    </div>
+    <!-- End Grid -->
+  </div>
+</div>
+<!-- End Testimonials -->
+
+<!-- Features -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+  <!-- Grid -->
+  <div class="grid gap-6 grid-cols-2 sm:gap-12 lg:grid-cols-3 lg:gap-8">
+    <!-- Stats -->
+    <div>
+      <h4
+        class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-neutral-200"
+      >
+        Accuracy rate
+      </h4>
+      <p class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-blue-600">
+        99.95%
+      </p>
+      <p class="mt-1 text-gray-500 dark:text-neutral-500">
+        in booking events
+      </p>
+    </div>
+    <!-- End Stats -->
+
+    <!-- Stats -->
+    <div>
+      <h4
+        class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-neutral-200"
+      >
+        Capacity Of Users and Events
+      </h4>
+      <p class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-blue-600">
+        2,000+
+      </p>
+      <p class="mt-1 text-gray-500 dark:text-neutral-500">
+        in this
+      </p>
+    </div>
+    <!-- End Stats -->
+
+    <!-- Stats -->
+    <div>
+      <h4
+        class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-neutral-200"
+      >
+        Happy customer
+      </h4>
+      <p class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-blue-600">
+        85%
+      </p>
+      <p class="mt-1 text-gray-500 dark:text-neutral-500">this year alone</p>
+    </div>
+    <!-- End Stats -->
+  </div>
+  <!-- End Grid -->
+</div>
+<!-- End Features -->
+
+<app-footer />
+<router-outlet></router-outlet>

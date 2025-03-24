@@ -1,0 +1,560 @@
+<app-navbar-common></app-navbar-common>
+
+<!-- Alert Section -->
+<div
+  *ngIf="showAlert"
+  class="fixed top-13 right-4 z-50 space-y-5"
+  style="width: 300px;"
+>
+  <div
+    *ngIf="alertType === 'success'"
+    class="bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 dark:bg-teal-800/30"
+    role="alert"
+  >
+    <div class="flex">
+      <div class="shrink-0">
+        <span class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800 dark:border-teal-900 dark:bg-teal-800 dark:text-teal-400">
+          <svg
+            class="shrink-0 size-4"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+        </span>
+      </div>
+      <div class="ms-3">
+        <h3 class="text-gray-800 font-semibold dark:text-white">
+          {{ alertMessage }}
+        </h3>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="alertType === 'error'"
+    class="bg-red-50 border-s-4 border-red-500 p-4 dark:bg-red-800/30"
+    role="alert"
+  >
+    <div class="flex">
+      <div class="shrink-0">
+        <span class="inline-flex justify-center items-center size-8 rounded-full border-4 border-red-100 bg-red-200 text-red-800 dark:border-red-900 dark:bg-red-800 dark:text-red-400">
+          <svg
+            class="shrink-0 size-4"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+            ></path>
+          </svg>
+        </span>
+      </div>
+      <div class="ms-3">
+        <h3 class="text-gray-800 font-semibold dark:text-white">
+          {{ alertMessage }}
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="flex items-center justify-center h-full">
+  <!-- Image Section -->
+  <div class="image-container hidden md:block md:w-1/2">
+    <img
+      src="assets/about_the_eif.jpg"
+      alt="Signup Illustration"
+      class="w-[800px] h-[700px] object-cover"
+    />
+  </div>
+
+  <!-- Form Section -->
+  <div class="form-container md:w-1/2 mt-[-20px] ml-[8px]">
+    <div class="p-4 sm:p-7">
+      <!-- Step Indicator -->
+      <ol
+        class="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse"
+      >
+        <li
+          [ngClass]="{
+            'text-blue-600': currentStep === 1,
+            'text-gray-500': currentStep !== 1
+          }"
+          class="flex items-center space-x-2.5 rtl:space-x-reverse"
+        >
+          <span
+            class="flex items-center justify-center w-8 h-8 border"
+            [ngClass]="{
+              'border-blue-600': currentStep === 1,
+              'border-gray-500': currentStep !== 1
+            }"
+          >
+            1
+          </span>
+          <span>
+            <h3 class="font-medium leading-tight">Personal info</h3>
+            <p class="text-sm">Step 1: Provide your personal details</p>
+          </span>
+        </li>
+        <li
+          [ngClass]="{
+            'text-blue-600': currentStep === 2,
+            'text-gray-500': currentStep !== 2
+          }"
+          class="flex items-center space-x-2.5 rtl:space-x-reverse"
+        >
+          <span
+            class="flex items-center justify-center w-8 h-8 border"
+            [ngClass]="{
+              'border-blue-600': currentStep === 2,
+              'border-gray-500': currentStep !== 2
+            }"
+          >
+            2
+          </span>
+          <span>
+            <h3 class="font-medium leading-tight">Authorization info</h3>
+            <p class="text-sm">Step 2: Provide your authorization details</p>
+          </span>
+        </li>
+      </ol>
+
+      <div *ngIf="currentStep === 1">
+        <div class="text-center"></div>
+        <div class="mt-5">
+          <form (ngSubmit)="onSubmit($event)">
+            <div class="grid gap-y-4">
+              <!-- Full Name -->
+              <div>
+                <label for="fullname" class="block text-sm mb-2 dark:text-white"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="fullname"
+                  [(ngModel)]="customerData.fullName"
+                  name="fullname"
+                  placeholder="Fullname"
+                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm"
+                  required
+                />
+                <div
+                  *ngIf="!customerData.fullName"
+                  class="text-red-500 text-sm"
+                >
+                  Full Name is required.
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div>
+                <label for="address" class="block text-sm mb-2 dark:text-white"
+                  >Address</label
+                >
+                <textarea
+                  id="address"
+                  [(ngModel)]="customerData.address"
+                  name="address"
+                  placeholder="Address"
+                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm"
+                  rows="3"
+                  required
+                ></textarea>
+                <div *ngIf="!customerData.address" class="text-red-500 text-sm">
+                  Address is required.
+                </div>
+              </div>
+
+              <!-- Telephone Number -->
+              <div>
+                <label
+                  for="telephone"
+                  class="block text-sm mb-2 dark:text-white"
+                  >Telephone Number</label
+                >
+                <input
+                  type="tel"
+                  id="telephone"
+                  [(ngModel)]="customerData.telephoneNumber"
+                  name="telephone"
+                  placeholder="Telephone Number"
+                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm"
+                  required
+                />
+                <div *ngIf="telephoneError" class="text-red-500 text-sm">
+                  Please enter a valid 10-digit phone number.
+                </div>
+              </div>
+
+              <!-- NIC Number -->
+              <div>
+                <label for="nic" class="block text-sm mb-2 dark:text-white"
+                  >NIC Number</label
+                >
+                <input
+                  type="text"
+                  id="nic"
+                  [(ngModel)]="customerData.nic"
+                  name="nic"
+                  placeholder="NIC Number"
+                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm"
+                  required
+                />
+                <div *ngIf="nicError" class="text-red-500 text-sm">
+                  NIC must be 10 digits long.
+                </div>
+              </div>
+
+              <!-- Gender -->
+              <div>
+                <label class="block text-sm mb-2 dark:text-white">Gender</label>
+                <div class="flex items-center gap-4">
+                  <div>
+                    <input
+                      type="radio"
+                      id="male"
+                      name="gender"
+                      value="male"
+                      [(ngModel)]="customerData.gender"
+                      class="mr-2"
+                      required
+                    />
+                    <label for="male" class="dark:text-white">Male</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="female"
+                      name="gender"
+                      value="female"
+                      [(ngModel)]="customerData.gender"
+                      class="mr-2"
+                      required
+                    />
+                    <label for="female" class="dark:text-white">Female</label>
+                  </div>
+                </div>
+                <div *ngIf="!customerData.gender" class="text-red-500 text-sm">
+                  Gender selection is required.
+                </div>
+              </div>
+
+              <!-- Next Button -->
+              <div>
+                <button
+                  type="button"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700"
+                  (click)="goToStep(2)"
+                  [disabled]="!isStep1Valid()"
+                >
+                  Next: Authorization Details
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep === 2">
+        <div class="text-center"></div>
+        <div class="mt-5">
+          <form (ngSubmit)="onSubmit($event)">
+            <div class="grid gap-y-4">
+              <!-- Email -->
+              <div>
+                <label for="email" class="block text-sm mb-2 dark:text-white"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  [(ngModel)]="customerData.email"
+                  name="email"
+                  placeholder="Email"
+                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm"
+                  required
+                />
+                <div *ngIf="emailError" class="text-red-500 text-sm">
+                  Please enter a valid email address.
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div>
+                <label for="password" class="block text-sm mb-2 dark:text-white"
+                  >Password</label
+                >
+
+                <h4
+                  class="my-2 text-sm font-semibold text-gray-800 dark:text-white"
+                >
+                  Your password must contain:
+                </h4>
+
+                <ul
+                  class="space-y-1 text-sm text-gray-500 dark:text-neutral-500"
+                >
+                  <li
+                    data-hs-strong-password-hints-rule-text="min-length"
+                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2"
+                  >
+                    <span class="hidden" data-check="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span data-uncheck="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                      </svg>
+                    </span>
+                    Minimum number of characters is 8.
+                  </li>
+                  <li
+                    data-hs-strong-password-hints-rule-text="lowercase"
+                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2"
+                  >
+                    <span class="hidden" data-check="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span data-uncheck="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                      </svg>
+                    </span>
+                    Should contain at least two lowercase letters.
+                  </li>
+                  <li
+                    data-hs-strong-password-hints-rule-text="uppercase"
+                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2"
+                  >
+                    <span class="hidden" data-check="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span data-uncheck="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                      </svg>
+                    </span>
+                    Should contain at least two uppercase letters.
+                  </li>
+                  <li
+                    data-hs-strong-password-hints-rule-text="numbers"
+                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2"
+                  >
+                    <span class="hidden" data-check="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span data-uncheck="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                      </svg>
+                    </span>
+                    Should contain at least two numbers.
+                  </li>
+                  <li
+                    data-hs-strong-password-hints-rule-text="special-characters"
+                    class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2"
+                  >
+                    <span class="hidden" data-check="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </span>
+                    <span data-uncheck="">
+                      <svg
+                        class="shrink-0 size-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                      </svg>
+                    </span>
+                    Should contain at least two special characters.
+                  </li>
+                </ul>
+                <input
+                  type="password"
+                  id="password"
+                  [(ngModel)]="customerData.password"
+                  name="password"
+                  placeholder="Password"
+                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm mt-3"
+                  required
+                />
+                <div *ngIf="passwordError" class="text-red-500 text-sm">
+                  Password must meet the required pattern.
+                </div>
+              </div>
+
+              <!-- Confirm Password -->
+              <div>
+                <label
+                  for="confirm-password"
+                  class="block text-sm mb-2 dark:text-white"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  id="confirm-password"
+                  [(ngModel)]="customerData.confirmPassword"
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm"
+                  required
+                />
+                <div *ngIf="passwordError" class="text-red-500 text-sm">
+                  Passwords do not match.
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div>
+                <button
+                  type="submit"
+                  class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700"
+                  [disabled]="!isStep2Valid()"
+                >
+                  Sign up
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

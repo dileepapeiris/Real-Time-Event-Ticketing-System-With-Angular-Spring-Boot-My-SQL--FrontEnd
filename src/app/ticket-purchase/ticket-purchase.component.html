@@ -1,0 +1,130 @@
+<app-navbar-homepage></app-navbar-homepage>
+
+<div class="bg-blue-900 text-white p-6 mt-0">
+  <!-- Top Section -->
+  <div class="max-w-5xl mx-auto">
+    <div class="flex flex-col md:flex-row h-[300px] p-10">
+      <div class="ml-8">
+        <svg
+          class="w-16 h-auto text-orange-500"
+          width="121"
+          height="135"
+          viewBox="0 0 121 135"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 16.4754C11.7688 27.4499 21.2452 57.3224 5 89.0164"
+            stroke="currentColor"
+            stroke-width="10"
+            stroke-linecap="round"
+          />
+          <path
+            d="M33.6761 112.104C44.6984 98.1239 74.2618 57.6776 83.4821 5"
+            stroke="currentColor"
+            stroke-width="10"
+            stroke-linecap="round"
+          />
+          <path
+            d="M50.5525 130C68.2064 127.495 110.731 117.541 116 78.0874"
+            stroke="currentColor"
+            stroke-width="10"
+            stroke-linecap="round"
+          />
+        </svg>
+        <h1 class="text-2xl font-bold">{{ event?.eventName }}</h1>
+        <p class="mt-4">📅 {{ event?.eventDate }} · {{ event?.eventTime }}</p>
+        <p class="mt-1">📍 {{ event?.eventLocation }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ticket Card Section -->
+<div class="absolute  top-20 transform right-20 max-w-sm z-10">
+  <div class="bg-white border border-gray-200 rounded-lg shadow-lg">
+    <img
+      class="rounded-t-lg"
+      [src]="event?.eventBanner"
+      alt="Event Banner"
+    />
+    <div class="p-5">
+      <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
+        Ticket Price: <span class="text-blue-700">{{ event?.ticketPrice }}</span>
+      </h5>
+      <label
+        for="ticket-count"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Ticket Count:
+        <span>
+          <button
+            class="text-gray-600 bg-gray-200 px-3 py-1 rounded-md"
+            (click)="decrement()"
+          >
+            -
+          </button>
+          <span class="px-4">{{ TicketCount }}</span>
+          <button
+            class="text-gray-600 bg-gray-200 px-3 py-1 rounded-md"
+            (click)="increment()"
+          >
+            +
+          </button>
+        </span>
+      </label>
+      <div class="mt-6">
+        <button
+          class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
+          (click)="buyTickets()"
+        >
+          Buy Tickets
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white text-gray-900 py-8 h-[300px]">
+  <div class="max-w-3xl ml-8 px-4">
+    <h2 class="text-xl font-bold mb-4">More Info</h2>
+    <p class="text-sm">
+      {{ event?.eventDescription}}
+    </p>
+  </div>
+</div>
+
+
+<!-- Ticket Card Section -->
+<div class="absolute top-20 transform right-20 max-w-sm z-10">
+  <div class="bg-white border border-gray-200 rounded-lg shadow-lg">
+    <img class="rounded-t-lg" [src]="event?.eventBanner" alt="Event Banner" />
+    <div class="p-5">
+      <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900">
+        Ticket Price: <span class="text-blue-700">{{ event?.ticketPrice }}</span>
+      </h5>
+      <label for="ticket-count" class="block mb-2 text-sm font-medium text-gray-900">
+        Ticket Count:
+        <span>
+          <button class="text-gray-600 bg-gray-200 px-3 py-1 rounded-md" (click)="decrement()">
+            -
+          </button>
+          <span class="px-4">{{ TicketCount }}</span>
+          <button class="text-gray-600 bg-gray-200 px-3 py-1 rounded-md" (click)="increment()">
+            +
+          </button>
+        </span>
+      </label>
+      <div class="mt-6">
+        <button
+          class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
+          (click)="buyTickets()"
+        >
+          Buy Tickets
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer/>

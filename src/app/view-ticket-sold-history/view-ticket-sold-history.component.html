@@ -1,0 +1,60 @@
+<app-vendordashbordnavbar/>
+
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto mt-10 ml-[220px]">
+  <div class="max-w-5xl mx-auto">
+    <div class="ml-[280px]">
+      <h2 class="text-3xl font-bold text-gray-800 sm:text-4xl dark:text-white">
+        Ticket Booked History
+      </h2>
+      <p class=" ml-[34px] mt-1 text-gray-600 dark:text-neutral-400">
+        Please click view booking details to view.
+      </p>
+    </div>
+    <div
+      *ngIf="events.length > 0; else noevents"
+      class="mt-8 flex flex-col border rounded-xl p-4 sm:p-6 lg:p-8 dark:border-neutral-700"
+    >
+
+    <!-- Table for displaying events and configuration -->
+    <div class="mt-1 flex flex-col ">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-blue-700 uppercase bg-blue-50 dark:bg-blue-700 dark:text-blue-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">Event ID</th>
+            <th scope="col" class="px-6 py-3">Event Name</th>
+            <th scope="col" class="px-6 py-3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ event.id }}</td>
+            <td class="px-6 py-4">{{ event.eventName }}</td>
+            
+            <td class="px-6 py-4">
+              <button
+                (click)="navigate(event.id)"
+                class="py-2 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
+              >
+                View Booking Details
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Display if no tickets are found -->
+ <ng-template #noevents>
+    <div class="text-center mt-12">
+      <img
+        src="https://img.freepik.com/premium-vector/no-data-concept-illustration_86047-486.jpg?semt=ais_hybrid"
+        alt="No bookings"
+        class="w-85 h-80 mx-auto"
+      />
+      <p class="mt-4 text-gray-500 text-lg">There is nothing at the moment</p>
+    </div>
+  </ng-template>
+
